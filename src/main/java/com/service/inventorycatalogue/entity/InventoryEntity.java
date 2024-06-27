@@ -1,5 +1,10 @@
 package com.service.inventorycatalogue.entity;
 
+/**
+ * Entity layer of Inventory Catalogue
+ *
+ */
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -14,9 +19,11 @@ import java.time.LocalDateTime;
 @Entity
 @Getter@Setter@ToString@AllArgsConstructor@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "inventory")
 public class InventoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "inventory_Id")
     private Long id;
 
     @Column(unique=true)
@@ -30,6 +37,8 @@ public class InventoryEntity {
     private String category;
 
     private String status;
+
+    private Boolean communication;
 
     @CreatedDate
     @Column(updatable = false)

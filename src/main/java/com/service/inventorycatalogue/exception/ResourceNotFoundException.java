@@ -1,5 +1,10 @@
 package com.service.inventorycatalogue.exception;
 
+/**
+ * Handles or throws exception when there is no Inventory found
+ *
+ */
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

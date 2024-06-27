@@ -1,5 +1,10 @@
 package com.service.inventorycatalogue.mapper;
 
+/**
+ * Converts the Inventory Dto layer to Inventory Entity layer and vice versa
+ *
+ */
+
 import com.service.inventorycatalogue.dto.InventoryDto;
 import com.service.inventorycatalogue.entity.InventoryEntity;
 

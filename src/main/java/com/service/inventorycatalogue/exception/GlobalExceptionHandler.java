@@ -1,5 +1,10 @@
 package com.service.inventorycatalogue.exception;
 
+/**
+ * Handles Global Exception / Any run time exceptions
+ *
+ */
+
 import com.service.inventorycatalogue.dto.ErrorResponseDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
