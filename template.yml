@@ -1,0 +1,33 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Timeout: 30
+
+Resources:
+  MessageAPIFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: s3://aws-sam-cli-managed-default-samclisourcebucket-wmsy6hkqy3ds/
+      Handler: com.service.message.StreamLambdaHandler.handleRequest
+      Runtime: java11
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-0fc44bb5b1f519ac0 (launch-wizard-1)
+        SubnetIds:
+          - subnet-0a71a799418947f0f
+        Architecture:
+          arm64
+        MemorySize: 512
+        Environment:
+          Variables:
+            JAVA_TOOL_OPTIONS: -XX:+TieredCompilation -XX:TieredStopAtLevel=1
+        Events:
+          HelloWorld:
+            Type: Api
+            Properties:
+              Path: /{proxy+}
+              Method: ANY
+    Metadata:
+      SamResourceId: MessageAPIFunction          
