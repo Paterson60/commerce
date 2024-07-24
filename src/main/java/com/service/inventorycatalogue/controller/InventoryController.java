@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path="/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 @Validated
-public class InventoryController {
+public class InventoryController extends RuntimeException{
 
     private final IInventoryService iInventoryService;
 
@@ -48,7 +48,7 @@ public class InventoryController {
             responseCode = "201",
             description = "HTTP Status Product Added"
     )
-    @PostMapping("/add")
+    @PostMapping("/addquantity")
     public ResponseEntity<ResponseDto> addQuantity(@Valid @RequestBody InventoryDto inventoryDto){
         iInventoryService.addQuantity(inventoryDto);
         return ResponseEntity
@@ -64,7 +64,7 @@ public class InventoryController {
             responseCode = "200",
             description = "HTTP Status Ok"
     )
-    @GetMapping("/fetch")
+    @GetMapping("/fetchquantity")
     public ResponseEntity<InventoryDto> fetchQuantity(@RequestParam
                                                       @NotEmpty(message = "Sku cannot be empty")
                                                       String sku){
@@ -95,13 +95,13 @@ public class InventoryController {
                     )
             )
     })
-    @PutMapping("/update")
+    @PutMapping("/updatequantity")
     public ResponseEntity<ResponseDto> updateQuantity(@Valid @RequestBody InventoryDto inventoryDto){
         boolean isUpdated = iInventoryService.updateQuantity(inventoryDto);
         if (isUpdated){
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(new ResponseDto(InventoryConstants.STATUS_200,InventoryConstants.MESSAGE_417_UPDATE));
+                    .body(new ResponseDto(InventoryConstants.STATUS_200,InventoryConstants.MESSAGE_200));
         }else {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -127,7 +127,7 @@ public class InventoryController {
                     description = "HTTP Status Internal Server Error"
             )
     })
-    @DeleteMapping("/delete")
+    @DeleteMapping("/deletequantity")
     public ResponseEntity<ResponseDto> deleteQuantity(@RequestParam
                                                           @NotEmpty(message = "Sku cannot be empty")
                                                           String sku){

@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-management81
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory-management
+  template:
+    metadata:
+      labels:
+        app: inventory-management
+    spec:
+      containers:
+        - name: inventory-management
+          image: 975049965288.dkr.ecr.us-east-1.amazonaws.com/commerce-internal-assigment2:inventorycatalogues2
+          ports:
+            - containerPort: 8081
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-management-service81
+spec:
+  selector:
+    app: inventory-management
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+  type: LoadBalancer

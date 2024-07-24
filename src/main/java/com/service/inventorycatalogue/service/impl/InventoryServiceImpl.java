@@ -12,6 +12,7 @@ import com.service.inventorycatalogue.dto.UpdateQuantityAFOrderDto;
 import com.service.inventorycatalogue.entity.InventoryEntity;
 import com.service.inventorycatalogue.exception.ResourceNotFoundException;
 import com.service.inventorycatalogue.exception.SkuExistsException;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.service.inventorycatalogue.mapper.InventoryMapper;
 import com.service.inventorycatalogue.mapper.UpdateQuantityAFOrderMapper;
 import com.service.inventorycatalogue.repository.InventoryRepository;
@@ -21,6 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;
+import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
+import software.amazon.awssdk.services.sqs.SqsClient;
 
 import java.util.Optional;
 
@@ -31,6 +34,9 @@ public class InventoryServiceImpl implements IInventoryService {
     private static final Logger log = LoggerFactory.getLogger(InventoryServiceImpl.class);
     private InventoryRepository inventoryRepository;
     private final StreamBridge streamBridge;
+    private final String queueUrl = "https://sqs.us-east-2.amazonaws.com/730335419891/message";
+    @Autowired
+    private final SqsClient sqsClient;
 
 
     /**
@@ -111,7 +117,15 @@ public class InventoryServiceImpl implements IInventoryService {
             inventoryEntity.setQuantity(newQuantity);
             InventoryEntity savedInventoryQuantity = inventoryRepository.save(inventoryEntity);
             if (savedInventoryQuantity.getQuantity() < 10){
-                sendCommunication(savedInventoryQuantity);
+                //sendCommunication(savedInventoryQuantity);
+                var inventoryMsgDto = new InventoryMsgDto( inventoryEntity.getSku(),
+                        inventoryEntity.getQuantity(), inventoryEntity.getCategory());
+                var result = streamBridge.send("sendCommunication-out-0", inventoryMsgDto);
+                SendMessageRequest sendMessageRequest = SendMessageRequest.builder()
+                        .queueUrl(queueUrl)
+                        .messageBody("Quantity of a product is less than 10")
+                        .build();
+                sqsClient.sendMessage(sendMessageRequest);
             }
             isOrdered = true;
         }
@@ -129,6 +143,12 @@ public class InventoryServiceImpl implements IInventoryService {
                 inventoryEntity.getQuantity(), inventoryEntity.getCategory());
         log.info("Sending Communication request for the details:{}", inventoryMsgDto);
         var result = streamBridge.send("sendCommunication-out-0", inventoryMsgDto);
+        SendMessageRequest sendMessageRequest = SendMessageRequest.builder()
+                .queueUrl(queueUrl)
+                .messageBody("Quantity of a product is less than 10")
+                .build();
+        sqsClient.sendMessage(sendMessageRequest);
+        log.info("The Communication request successfully triggered");
         log.info("The Communication request successfully triggered?:{}", result);
     }
 
