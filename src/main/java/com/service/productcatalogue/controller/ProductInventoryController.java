@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
         name = "Rest APIs For Product, Catalogue In Product Catalogue Service",
         description = "Rest API to fetch Product, Inventory details"
 )
-@RestController
+//@RestController
 @RequestMapping(path="/api", produces = {MediaType.APPLICATION_JSON_VALUE})
 //@AllArgsConstructor
 @Validated

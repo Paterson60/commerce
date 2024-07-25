@@ -19,7 +19,7 @@ import com.service.productcatalogue.repository.PriceRepository;
 import com.service.productcatalogue.repository.ProductAssociationRepository;
 import com.service.productcatalogue.repository.ProductRepository;
 import com.service.productcatalogue.service.IProductInventoryService;
-import com.service.productcatalogue.service.client.InventoryFeignClient;
+//import com.service.productcatalogue.service.client.InventoryFeignClient;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ public class ProductInventoryServiceImpl implements IProductInventoryService {
     private ProductRepository productRepository;
     private ProductAssociationRepository productAssociationRepository;
     private PriceRepository priceRepository;
-    private InventoryFeignClient inventoryFeignClient;
+    //private InventoryFeignClient inventoryFeignClient;
 
 
     /**
@@ -40,22 +40,23 @@ public class ProductInventoryServiceImpl implements IProductInventoryService {
      */
     @Override
     public ProductInventoryDto fetchProductInventoryDetails(String sku) {
-        Product product = productRepository.findBySku(sku).orElseThrow(
-                ()-> new ResourceNotFoundException("Product","Sku", sku)
-        );
-        ProductAssociation productAssociation = productAssociationRepository.findBySku(product.getSku()).orElseThrow(
-                ()-> new ResourceNotFoundException("RelatedProduct","Sku", sku)
-        );
-
-        ProductInventoryDto productInventoryDto = AllProductMapperProductMapper.mapToProductInventoryDetailsDto(product, new ProductInventoryDto());
-        productInventoryDto.setProductAssociationDto(ProductAssociationMapper.mapToProductAssociationDto(productAssociation, new ProductAssociationDto()));
-
-        Price price = priceRepository.findByPriceId(product.getProductId());
-        productInventoryDto.setPriceDto(ProductMapper.mapToPriceDto(price));
-
-        ResponseEntity<InventoryDto> inventoryDtoResponseEntity = inventoryFeignClient.fetchQuantity(sku);
-        productInventoryDto.setInventoryDto(inventoryDtoResponseEntity.getBody());
-
-        return productInventoryDto;
+//        Product product = productRepository.findBySku(sku).orElseThrow(
+//               ()-> new ResourceNotFoundException("Product","Sku", sku)
+//       );
+//       ProductAssociation productAssociation = productAssociationRepository.findBySku(product.getSku()).orElseThrow(
+//               ()-> new ResourceNotFoundException("RelatedProduct","Sku", sku)
+//       );
+//
+//       ProductInventoryDto productInventoryDto = AllProductMapperProductMapper.mapToProductInventoryDetailsDto(product, new ProductInventoryDto());
+//       productInventoryDto.setProductAssociationDto(ProductAssociationMapper.mapToProductAssociationDto(productAssociation, new ProductAssociationDto()));
+//
+//       Price price = priceRepository.findByPriceId(product.getProductId());
+//       productInventoryDto.setPriceDto(ProductMapper.mapToPriceDto(price));
+//
+//       ResponseEntity<InventoryDto> inventoryDtoResponseEntity = inventoryFeignClient.fetchQuantity(sku);
+//       productInventoryDto.setInventoryDto(inventoryDtoResponseEntity.getBody());
+//
+//       return productInventoryDto;
+			return null;
     }
 }
