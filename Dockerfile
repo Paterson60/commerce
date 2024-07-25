@@ -3,8 +3,8 @@ FROM openjdk:17
 # Set working directory inside the container
 WORKDIR /app
 # Copy the compiled Java application JAR file into the container
-COPY ./target/product-catalogue.jar /app
+COPY ./target/productcatalogue-0.0.1-SNAPSHOT.jar /app
 # Expose the port the Spring Boot application will run on
 EXPOSE 8080
 # Command to run the application
-CMD ["java", "-jar", "product-catalogue.jar"]
+CMD ["java", "-jar", "productcatalogue-0.0.1-SNAPSHOT.jar"]
