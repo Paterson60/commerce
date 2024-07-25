@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableJpaAuditing
-@EnableFeignClients
+//@EnableFeignClients
 @OpenAPIDefinition(
 		info = @Info(
 				title = "Product Catalogue Service API Documentation",
