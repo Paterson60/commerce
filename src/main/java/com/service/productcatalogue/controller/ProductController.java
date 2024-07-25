@@ -209,4 +209,9 @@ public class ProductController extends RuntimeException{
         iProductService.updatePrice(productId,priceDto);
         return ResponseEntity.status(HttpStatus.OK).body(new ResponseDto(ProductConstants.STATUS_200,ProductConstants.MESSAGE_200));
     }
+	
+	@GetMapping("/ci-cd")
+    public String helloCiCd(){
+        return "Hello-CI-CD";
+    }
 }
