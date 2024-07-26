@@ -212,6 +212,6 @@ public class ProductController extends RuntimeException{
 	
 	@GetMapping("/ci-cd")
     public String helloCiCd(){
-        return "Hello-CI-CD";
+        return "Automated-CI-CD integration test";
     }
 }
