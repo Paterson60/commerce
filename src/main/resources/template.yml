@@ -11,12 +11,8 @@ Resources:
     Properties:
       CodeUri: .
       Handler: com.service.message.StreamLambdaHandler.handleRequest
-      Runtime: java11
+      Runtime: java17
       VpcConfig:
-        SecurityGroupIds:
-          - sg-0fc44bb5b1f519ac0 (launch-wizard-1)
-        SubnetIds:
-          - subnet-0a71a799418947f0f
         Architecture:
           arm64
         MemorySize: 512
