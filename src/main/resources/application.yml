@@ -60,7 +60,7 @@ cloud:
       static: us-east-2
       auto: false
     credentials:
-      access-key:
-      secret-key:
+      access-key: AKIA2UC3CDXZQGJFB2M7
+      secret-key: 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
     end-point:
-      uri:
+      uri: https://sqs.us-east-2.amazonaws.com/730335419891/message
