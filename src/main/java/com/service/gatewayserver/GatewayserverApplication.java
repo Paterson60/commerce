@@ -16,7 +16,7 @@ public class GatewayserverApplication {
 	}
 
 	/**
-	 * Helps in defining a new the api path in GatewayServer/
+	 * Helps in defining a new api path in GatewayServer/
 	 * instead of directly hitting any endpoints of Product and Inventory
 	 */
 	@Bean
