@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AwsConfig {
 
-    private static final String ACCESS_KEY = "AKIA2UC3CDXZQGJFB2M7";
-    private static final String SECRET_KEY = "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";
+    private static final String ACCESS_KEY = "";
+    private static final String SECRET_KEY = "";
 
     @Bean
     public SqsClient sqsClient() {
