@@ -72,10 +72,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>-->
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream</artifactId>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-binder-rabbit</artifactId>
@@ -107,11 +107,11 @@
 			<groupId>io.awspring.cloud</groupId>
 			<artifactId>spring-cloud-aws-core</artifactId>
 		</dependency>
-		<dependency>
+		<!--<dependency>
 			<groupId>io.awspring.cloud</groupId>
 			<artifactId>spring-cloud-starter-aws</artifactId>
 			<version>2.4.4</version>
-		</dependency>
+		</dependency>-->
 		<!-- https://mvnrepository.com/artifact/software.amazon.awssdk/sqs -->
 		<dependency>
 			<groupId>software.amazon.awssdk</groupId>
@@ -136,17 +136,17 @@
 		</dependency>
 
 
-		<!--<dependency>
+		<dependency>
 			<groupId>com.amazonaws</groupId>
 			<artifactId>aws-java-sdk-sqs</artifactId>
 			<version>1.12.757</version>
-		</dependency>-->
+		</dependency>
 
 		<!--<dependency>
 			<groupId>io.awspring.cloud</groupId>
 			<artifactId>spring-cloud-aws-starter-sqs</artifactId>
-		</dependency>
-		<dependency>
+		</dependency>-->
+		<!--<dependency>
 			<groupId>io.awspring.cloud</groupId>
 			<artifactId>spring-cloud-aws-starter</artifactId>
 		</dependency>-->
